@@ -21,7 +21,12 @@ public class Conta {
         this.saldo += quantia;
         this.extrato.add("DEPOSITO, " + quantia + ", " + this.saldo);
     }
+
+    @fix
     public void saque(int quantia) {
+        if (quantia <= 0){
+            throw new IllegalArgumentException("A quantia deve ser maior que zero");
+        }
         this.saldo -= quantia;
         this.extrato.add("SAQUE, " + quantia + ", " + this.saldo);
     }
