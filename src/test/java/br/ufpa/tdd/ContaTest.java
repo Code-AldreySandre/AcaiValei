@@ -82,4 +82,18 @@ class ContaTest {
             acc.saque(-30);
         });
     }
-}
+
+    @Test
+    void saqueMaiorQueSaldoLancaExcecaoSemColateral()
+    {
+        Conta acc = new Conta();
+        acc.deposito(100);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            acc.saque(150);
+        });
+
+        assertEquals(100, acc.getSaldo());
+        assertEquals(1, acc.getEntradas().size());
+        assertEquals("DEPOSITO, 100, 100", acc.getEntradas().get(0));
+    }
