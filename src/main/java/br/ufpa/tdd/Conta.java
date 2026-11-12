@@ -36,7 +36,7 @@ public class Conta {
         outra.deposito(quantia);
     }
 
-    @fix
+
     private void validarQuantia(int quantia) {
         if (quantia <= 0) {
             throw new IllegalArgumentException("A quantia deve ser maior que zero.");
