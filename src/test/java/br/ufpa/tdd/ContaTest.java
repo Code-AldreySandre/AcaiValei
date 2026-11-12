@@ -43,6 +43,15 @@ class ContaTest {
     }
 
     @Test
+    void extratoNaoPodeSerAlteradoExternamente() {
+        Conta acc = new Conta();
+        acc.deposito(100);
+        assertThrows(UnsupportedOperationException.class, () -> {
+            acc.getEntradas().clear();
+        });
+    }
+
+    @Test
     void saqueCriaLancamentoNoExtrato() {
         Conta acc = new Conta();
         acc.deposito(100);
