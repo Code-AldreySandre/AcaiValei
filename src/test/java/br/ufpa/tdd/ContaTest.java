@@ -1,7 +1,6 @@
 package br.ufpa.tdd;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ContaTest {
@@ -10,6 +9,12 @@ class ContaTest {
     void novaContaIniciaComSaldo0() {
         Conta acc = new Conta();
         assertEquals(0, acc.getSaldo());
+    }
+
+    @Test
+    void novaContaIniciaComExtratoVazio() {
+        Conta acc = new Conta();
+        assertTrue(acc.getEntradas().isEmpty());
     }
 
 }
