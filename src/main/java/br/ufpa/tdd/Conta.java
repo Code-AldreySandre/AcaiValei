@@ -27,6 +27,9 @@ public class Conta {
         if (quantia <= 0){
             throw new IllegalArgumentException("A quantia deve ser maior que zero");
         }
+        if (quantia > this.saldo){
+            throw new IllegalArgumentException("Saldo Insuficiente.");
+        }
         this.saldo -= quantia;
         this.extrato.add("SAQUE, " + quantia + ", " + this.saldo);
     }
