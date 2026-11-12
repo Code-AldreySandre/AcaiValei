@@ -1,6 +1,7 @@
 package br.ufpa.tdd;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Conta {
@@ -13,11 +14,12 @@ public class Conta {
     }
 
     public List<String> getEntradas() {
-        return this.extrato; 
+        // Devolve uma versão protegida: quem chamar pode ler, mas não pode alterar
+        return Collections.unmodifiableList(this.extrato);
     }
 
     public void deposito(int quantia) {
-        this.saldo += quantia;  
+        this.saldo += quantia;
         this.extrato.add("DEPOSITO, " + quantia + ", " + this.saldo);
     }
 
