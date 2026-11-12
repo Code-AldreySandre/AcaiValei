@@ -23,4 +23,6 @@ public class Conta {
 
     public void saque(int quantia) {
         this.saldo -= quantia;
+        this.extrato.add("SAQUE, " + quantia + ", " + this.saldo);
+    }
 }
