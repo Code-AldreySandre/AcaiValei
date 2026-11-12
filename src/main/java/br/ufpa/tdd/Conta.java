@@ -6,31 +6,38 @@ import java.util.List;
 
 public class Conta {
     private int saldo = 0;
-    private List<String> extrato = new ArrayList<>(); 
-    
+    private final List<String> extrato = new ArrayList<>();
+
     public int getSaldo() {
         return this.saldo;
     }
+
     public List<String> getEntradas() {
         return Collections.unmodifiableList(this.extrato);
     }
+
     public void deposito(int quantia) {
-        if (quantia <= 0) {
-            throw new IllegalArgumentException("A quantia do depósito deve ser maior que zero.");
-        }
+        validarQuantia(quantia);
         this.saldo += quantia;
-        this.extrato.add("DEPOSITO, " + quantia + ", " + this.saldo);
+        registrar("DEPOSITO", quantia);
     }
 
-    @fix
     public void saque(int quantia) {
-        if (quantia <= 0){
-            throw new IllegalArgumentException("A quantia deve ser maior que zero");
-        }
-        if (quantia > this.saldo){
-            throw new IllegalArgumentException("Saldo Insuficiente.");
+        validarQuantia(quantia);
+        if (quantia > this.saldo) {
+            throw new IllegalArgumentException("Saldo insuficiente.");
         }
         this.saldo -= quantia;
-        this.extrato.add("SAQUE, " + quantia + ", " + this.saldo);
+        registrar("SAQUE", quantia);
+    }
+
+    private void validarQuantia(int quantia) {
+        if (quantia <= 0) {
+            throw new IllegalArgumentException("A quantia deve ser maior que zero.");
+        }
+    }
+
+    private void registrar(String tipo, int quantia) {
+        this.extrato.add(tipo + ", " + quantia + ", " + this.saldo);
     }
 }
