@@ -1,9 +1,8 @@
 package br.ufpa.tdd;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class Conta {
-
+    
+    public int getSaldo() {
+        return 0; // Retorna 0 para passar no teste de forma mais simples possível
+    }
 }
