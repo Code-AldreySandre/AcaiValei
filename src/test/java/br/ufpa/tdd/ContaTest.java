@@ -42,4 +42,12 @@ class ContaTest {
         assertEquals(60, acc.getSaldo());
     }
 
+    @Test
+    void saqueCriaLancamentoNoExtrato() {
+        Conta acc = new Conta();
+        acc.deposito(100);
+        acc.saque(40);
+        assertEquals(2, acc.getEntradas().size());
+        assertEquals("SAQUE, 40, 60", acc.getEntradas().get(1));
+    }
 }
