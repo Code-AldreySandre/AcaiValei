@@ -31,6 +31,12 @@ public class Conta {
         registrar("SAQUE", quantia);
     }
 
+    public void transferenciaPara(Conta outra, int quantia) {
+        this.saque(quantia);
+        outra.deposito(quantia);
+    }
+
+    @fix
     private void validarQuantia(int quantia) {
         if (quantia <= 0) {
             throw new IllegalArgumentException("A quantia deve ser maior que zero.");
