@@ -59,4 +59,16 @@ class ContaTest {
         assertEquals(2, acc.getEntradas().size());
         assertEquals("SAQUE, 40, 60", acc.getEntradas().get(1));
     }
+
+    @Test
+    void depositoComZeroOuValorNegativoLancaExcecao() {
+        Conta acc = new Conta();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            acc.deposito(0);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            acc.deposito(-50);
+        });
+    }
 }
