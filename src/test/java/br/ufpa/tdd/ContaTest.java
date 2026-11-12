@@ -33,4 +33,13 @@ class ContaTest {
         assertEquals("DEPOSITO, 100, 100", acc.getEntradas().get(0));
     }
 
+    @Test
+    void saqueAlteraSaldoCorretamente() {
+        Conta acc = new Conta();
+        acc.deposito(100);
+        acc.saque(40);
+        
+        assertEquals(60, acc.getSaldo());
+    }
+
 }
