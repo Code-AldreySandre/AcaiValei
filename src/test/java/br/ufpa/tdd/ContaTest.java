@@ -97,3 +97,33 @@ class ContaTest {
         assertEquals(1, acc.getEntradas().size());
         assertEquals("DEPOSITO, 100, 100", acc.getEntradas().get(0));
     }
+    @Test
+    void transferenciaMoveSaldosEExtratosCorretamente() {
+        Conta origem = new Conta();
+        Conta destino = new Conta();
+        origem.deposito(200);
+    
+        origem.transferenciaPara(destino, 80);
+    
+        assertEquals(120, origem.getSaldo());
+        assertEquals(80, destino.getSaldo());
+        assertEquals("SAQUE, 80, 120", origem.getEntradas().get(1));
+        assertEquals("DEPOSITO, 80, 80", destino.getEntradas().get(0));
+    }
+
+    @Test
+    void transferenciaComSaldoInsuficienteNaoAlteraNada() {
+        Conta origem = new Conta();
+        Conta destino = new Conta();
+        origem.deposito(50);
+    
+        assertThrows(IllegalArgumentException.class, () -> {
+            origem.transferenciaPara(destino, 100);
+        });
+    
+        assertEquals(50, origem.getSaldo());
+        assertEquals(0, destino.getSaldo());
+        assertEquals(1, origem.getEntradas().size());
+        assertTrue(destino.getEntradas().isEmpty());
+    }
+}
